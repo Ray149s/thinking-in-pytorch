@@ -1094,91 +1094,102 @@ function calibrationRate(cal, key) {
 }
 
 // ============================================================
-// MASCOT — a coiled "C" serpent at a vintage terminal
-// (parallels the Python snake on a laptop, but C-themed)
+// MASCOT — Tora: a python coiled up an upright torch with a blue flame
+// (drawn back-coils → torch → flame → front-coils → head for depth)
 // ============================================================
 
 function CMascot({ size = 200 }) {
   return (
-    <svg viewBox="0 0 200 200" width={size} height={size} aria-label="PyTorch mascot">
-      {/* Glow */}
+    <svg viewBox="0 0 200 200" width={size} height={size} aria-label="PyTorch mascot: a python coiled around a blue-flame torch">
       <defs>
-        <radialGradient id="glow" cx="50%" cy="55%" r="50%">
-          <stop offset="0%" stopColor="#fb923c" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#fb923c" stopOpacity="0" />
+        <radialGradient id="torchGlow" cx="50%" cy="30%" r="55%">
+          <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.5" />
+          <stop offset="55%" stopColor="#3b82f6" stopOpacity="0.14" />
+          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
         </radialGradient>
-        <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#fdba74" />
-          <stop offset="100%" stopColor="#c2410c" />
+        <linearGradient id="flameOuter" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#1e40af" />
+          <stop offset="50%" stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#60a5fa" />
         </linearGradient>
-        <linearGradient id="bellyGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#ffedd5" />
-          <stop offset="100%" stopColor="#fb923c" />
+        <linearGradient id="flameInner" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#38bdf8" />
+          <stop offset="65%" stopColor="#bae6fd" />
+          <stop offset="100%" stopColor="#f0f9ff" />
         </linearGradient>
-        <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1a1a2e" />
-          <stop offset="100%" stopColor="#0f0f1e" />
+        <linearGradient id="torchMetal" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#78350f" />
+          <stop offset="42%" stopColor="#f59e0b" />
+          <stop offset="56%" stopColor="#fde68a" />
+          <stop offset="100%" stopColor="#7c2d12" />
+        </linearGradient>
+        <linearGradient id="bowlMetal" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#7c2d12" />
+          <stop offset="50%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#78350f" />
+        </linearGradient>
+        <linearGradient id="snakeBody" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#4ade80" />
+          <stop offset="100%" stopColor="#15803d" />
+        </linearGradient>
+        <linearGradient id="snakeBelly" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#dcfce7" />
+          <stop offset="100%" stopColor="#4ade80" />
         </linearGradient>
       </defs>
 
-      <circle cx="100" cy="105" r="95" fill="url(#glow)" />
+      {/* Glow cast by the flame */}
+      <circle cx="100" cy="68" r="96" fill="url(#torchGlow)" />
 
-      {/* CRT terminal */}
-      <g transform="translate(100, 145)">
-        <rect x="-55" y="-25" width="110" height="55" rx="6" fill="#2d2d3d" stroke="#1a1a2e" strokeWidth="1.5" />
-        <rect x="-48" y="-19" width="96" height="42" rx="3" fill="url(#screenGrad)" />
-        {/* Scan lines */}
-        <rect x="-48" y="-19" width="96" height="1.5" fill="#fb923c" opacity="0.3" />
-        <rect x="-48" y="-12" width="96" height="0.5" fill="#fb923c" opacity="0.15" />
-        <rect x="-48" y="-5" width="96" height="0.5" fill="#fb923c" opacity="0.15" />
-        {/* Prompt */}
-        <text x="-42" y="-2" fontFamily="ui-monospace, monospace" fontSize="7" fill="#86efac" fontWeight="bold">{'>>> import'}</text>
-        <text x="-42" y="8" fontFamily="ui-monospace, monospace" fontSize="7" fill="#fb923c">torch_</text>
-        {/* Stand */}
-        <rect x="-12" y="30" width="24" height="6" rx="1" fill="#1a1a2e" />
-        <rect x="-22" y="36" width="44" height="3" rx="1" fill="#2d2d3d" />
+      {/* Python — BACK coils (behind the shaft; the shaft hides their middles) */}
+      <g stroke="url(#snakeBody)" strokeWidth="15" fill="none" strokeLinecap="round">
+        <path d="M122 172 Q100 144 78 150" />
+        <path d="M122 128 Q100 102 78 106" />
       </g>
 
-      {/* C-shaped serpent (open ring on the right side, like the letter C) */}
+      {/* Torch: base, shaft, brazier */}
       <g>
-        {/* Main body — a thick C curve */}
-        <path
-          d="M 145 70 Q 115 35, 70 50 Q 30 65, 30 105 Q 30 145, 75 155 Q 115 162, 148 138"
-          fill="none"
-          stroke="url(#bodyGrad)"
-          strokeWidth="22"
-          strokeLinecap="round"
-        />
-        {/* Belly highlight */}
-        <path
-          d="M 140 75 Q 110 45, 75 58 Q 42 70, 42 105 Q 42 140, 80 148"
-          fill="none"
-          stroke="url(#bellyGrad)"
-          strokeWidth="9"
-          strokeLinecap="round"
-          opacity="0.85"
-        />
-        {/* Scale dapples */}
-        <ellipse cx="55" cy="78" rx="6" ry="4" fill="#c2410c" opacity="0.55" transform="rotate(-30 55 78)" />
-        <ellipse cx="38" cy="115" rx="5" ry="3.5" fill="#c2410c" opacity="0.55" />
-        <ellipse cx="100" cy="50" rx="5" ry="3.5" fill="#c2410c" opacity="0.55" transform="rotate(15 100 50)" />
-        <ellipse cx="78" cy="148" rx="5" ry="3" fill="#c2410c" opacity="0.55" />
+        <rect x="84" y="175" width="32" height="9" rx="3" fill="url(#bowlMetal)" stroke="#78350f" strokeWidth="1" />
+        <rect x="80" y="182" width="40" height="6" rx="3" fill="#78350f" />
+        <path d="M91 94 L109 94 L107 178 L93 178 Z" fill="url(#torchMetal)" stroke="#7c2d12" strokeWidth="1" />
+        <rect x="90" y="149" width="20" height="5" rx="2" fill="#7c2d12" opacity="0.55" />
+        <rect x="90" y="120" width="20" height="5" rx="2" fill="#7c2d12" opacity="0.55" />
+        <path d="M78 79 Q100 71 122 79 L112 96 Q100 100 88 96 Z" fill="url(#bowlMetal)" stroke="#7c2d12" strokeWidth="1.2" />
+        <ellipse cx="100" cy="79" rx="22" ry="5" fill="#fcd34d" />
+        <ellipse cx="100" cy="79" rx="15" ry="3" fill="#1e3a8a" opacity="0.45" />
+      </g>
 
-        {/* Head — at top right of the C */}
-        <g transform="translate(146, 68)">
-          <ellipse cx="0" cy="0" rx="16" ry="13" fill="url(#bodyGrad)" />
-          <ellipse cx="-2" cy="2" rx="11" ry="7" fill="url(#bellyGrad)" opacity="0.6" />
-          {/* Eye */}
-          <circle cx="5" cy="-3" r="2.5" fill="#0f0f1e" />
-          <circle cx="5.8" cy="-3.8" r="0.9" fill="#fff" />
-          {/* Tongue */}
-          <path d="M 14 4 L 22 6 L 19 8 L 24 9" stroke="#facc15" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        </g>
+      {/* Blue flame */}
+      <g>
+        <path d="M100 16 C126 46, 121 73, 100 81 C79 73, 74 46, 100 16 Z" fill="url(#flameOuter)" />
+        <path d="M100 36 C113 53, 112 69, 100 79 C94 67, 94 53, 100 36 Z" fill="url(#flameInner)" opacity="0.95" />
+        <path d="M100 30 C106 48, 105 68, 100 79 C97 66, 96 48, 100 30 Z" fill="#f0f9ff" opacity="0.9" />
+      </g>
 
-        {/* Tail tip — at bottom right */}
-        <g transform="translate(150, 138)">
-          <path d="M 0 0 Q 8 -2, 12 4 Q 8 6, 0 4 Z" fill="url(#bodyGrad)" />
-        </g>
+      {/* Python — FRONT coils (over the shaft) */}
+      <g stroke="url(#snakeBody)" strokeWidth="15" fill="none" strokeLinecap="round">
+        <path d="M94 185 Q110 191 122 172" />
+        <path d="M78 150 Q100 158 122 128" />
+        <path d="M78 106 Q90 96 106 88" />
+      </g>
+      {/* Belly sheen on the front coils */}
+      <g stroke="url(#snakeBelly)" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.8">
+        <path d="M96 183 Q110 188 120 173" />
+        <path d="M81 150 Q100 156 120 130" />
+      </g>
+
+      {/* Tail tip at the base */}
+      <path d="M94 185 Q83 189 81 182 Q88 183 94 185 Z" fill="url(#snakeBody)" />
+
+      {/* Python head, rising past the brazier */}
+      <g transform="translate(106, 86) rotate(-18)">
+        <ellipse cx="0" cy="0" rx="15" ry="11" fill="url(#snakeBody)" />
+        <ellipse cx="-1" cy="2" rx="10" ry="6" fill="url(#snakeBelly)" opacity="0.7" />
+        <circle cx="6" cy="-3" r="2.6" fill="#0f172a" />
+        <circle cx="6.8" cy="-3.8" r="0.9" fill="#fff" />
+        <circle cx="-4" cy="-3" r="2.2" fill="#0f172a" />
+        <circle cx="-3.4" cy="-3.7" r="0.8" fill="#fff" />
+        <path d="M13 2 L22 3 L18 5 L24 6" stroke="#f43f5e" strokeWidth="1.6" fill="none" strokeLinecap="round" />
       </g>
     </svg>
   );
