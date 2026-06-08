@@ -1,13 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="b" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fdba74"/>
-      <stop offset="100%" stop-color="#c2410c"/>
+    <linearGradient id="fl" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#1e40af"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7dd3fc"/>
+    </linearGradient>
+    <linearGradient id="mt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+    <linearGradient id="sn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#15803d"/>
     </linearGradient>
   </defs>
   <rect width="200" height="200" rx="42" fill="#0a0a0a"/>
-  <path d="M 145 70 Q 115 35, 70 50 Q 30 65, 30 105 Q 30 145, 75 155 Q 115 162, 148 138" fill="none" stroke="url(#b)" stroke-width="22" stroke-linecap="round"/>
-  <ellipse cx="146" cy="68" rx="16" ry="13" fill="url(#b)"/>
-  <circle cx="151" cy="65" r="2.5" fill="#0f0f1e"/>
-  <path d="M 158 66 l 10 -3 l -7 6 l 9 0" fill="none" stroke="#fb923c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- python: coil behind the shaft -->
+  <path d="M132 146 Q100 116 68 124" stroke="url(#sn)" stroke-width="21" fill="none" stroke-linecap="round"/>
+  <!-- torch: base, shaft, brazier -->
+  <rect x="78" y="162" width="44" height="13" rx="4" fill="url(#mt)"/>
+  <path d="M87 100 L113 100 L110 166 L90 166 Z" fill="url(#mt)"/>
+  <path d="M72 84 Q100 73 128 84 L115 104 Q100 109 85 104 Z" fill="url(#mt)"/>
+  <!-- blue flame -->
+  <path d="M100 16 C136 56, 129 92, 100 104 C71 92, 64 56, 100 16 Z" fill="url(#fl)"/>
+  <path d="M100 42 C118 66, 116 90, 100 103 C90 88, 88 66, 100 42 Z" fill="#dbeafe"/>
+  <!-- python: coils over the shaft -->
+  <path d="M68 124 Q100 138 132 104" stroke="url(#sn)" stroke-width="21" fill="none" stroke-linecap="round"/>
+  <path d="M76 160 Q100 170 124 152" stroke="url(#sn)" stroke-width="21" fill="none" stroke-linecap="round"/>
+  <!-- python head -->
+  <g transform="translate(132,104) rotate(-20)">
+    <ellipse rx="16" ry="12" fill="url(#sn)"/>
+    <circle cx="7" cy="-3" r="3" fill="#0f172a"/>
+    <path d="M14 2 l10 1 l-5 2 l7 1" fill="none" stroke="#f43f5e" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
 </svg>
